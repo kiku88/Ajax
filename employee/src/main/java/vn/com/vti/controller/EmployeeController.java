@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +37,8 @@ public class EmployeeController {
 	public String createInput() {
 		return "employee/employeeInput";
 	}
-
+/*
+	
 	@PostMapping("/emp/employeeConfirm")
 	public String createConfirm(@RequestParam(value="empNo") Integer empNo, @RequestParam(value="name", required = true) String name, Model model, BindingResult result) {
 		if (result.hasErrors()) {
@@ -46,9 +46,23 @@ public class EmployeeController {
 	    }
 		model.addAttribute("empNo",empNo);
 		model.addAttribute("name",name);
+	
 		return "employee/employeeConfirm";
+		
 	}
+	*/
+	
 
+	@PostMapping("/emp/employeeConfirm")
+	public String createConfirm(@RequestParam(value="empNo") Integer empNo, @RequestParam(value="name", required = true) String name, Model model) {
+		
+		model.addAttribute("empNo",empNo);
+		model.addAttribute("name",name);
+	
+		return "employee/employeeConfirm";
+		
+	}
+	
 	@PostMapping("/emp/employeeInsert")
 	public String insert(@RequestParam("empNo") String empNo, @RequestParam("name") String name) {
 		Employee emp = new Employee();
